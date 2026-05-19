@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>History</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0a0a0a;
+            color: #00ff88;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px
+        }
+
+        table {
+            background: #111;
+            border: 1px solid #1a3a2a;
+            border-radius: 12px;
+            width: 600px;
+            border-collapse: collapse
+        }
+
+        td,
+        th {
+            padding: 8px;
+            border-bottom: 1px solid #1a3a2a
+        }
+
+        .ok {
+            color: #00ff88
+        }
+
+        .no {
+            color: red
+        }
+
+        a {
+            color: #888;
+            margin-top: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📋 History</h1>
+    {% if records %}
+    <table>
+        <tr>
+            <th>Sequence</th>
+            <th>A</th>
+            <th>T</th>
+            <th>C</th>
+            <th>G</th>
+            <th>Status</th>
+        </tr>
+        {% for r in records %}
+        <tr>
+            <td>{{ r.sequence }}</td>
+            <td>{{ r.count_a }}</td>
+            <td>{{ r.count_t }}</td>
+            <td>{{ r.count_c }}</td>
+            <td>{{ r.count_g }}</td>
+            <td class="{% if r.is_valid %}ok{% else %}no{% endif %}">{% if r.is_valid %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}<p>No history yet.</p>{% endif %}
+    <a href="{% url 'home' %}">← Back</a>
+</body>
+
+</html>

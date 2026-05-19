@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0a0a0a;
+            color: #00ff88;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #1a3a2a;
+            border-radius: 12px;
+            padding: 20px;
+            width: 500px;
+            margin-bottom: 14px
+        }
+
+        .counts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            text-align: center
+        }
+
+        .c {
+            background: #0a0a0a;
+            border: 1px solid #1a3a2a;
+            border-radius: 8px;
+            padding: 12px
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        td,
+        th {
+            padding: 8px;
+            border-bottom: 1px solid #1a3a2a
+        }
+
+        .ok {
+            color: #00ff88
+        }
+
+        .no {
+            color: red
+        }
+
+        a {
+            color: #888;
+            margin-top: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{% if result.valid %}✅ Valid{% else %}❌ Invalid{% endif %}</h1>
+    <div class="card">
+        <p>{{ result.sequence }} | Length: {{ result.length }}</p>
+        <div class="counts">
+            <div class="c"><b>A</b><br>{{ result.count_a }}</div>
+            <div class="c"><b>T</b><br>{{ result.count_t }}</div>
+            <div class="c"><b>C</b><br>{{ result.count_c }}</div>
+            <div class="c"><b>G</b><br>{{ result.count_g }}</div>
+        </div>
+    </div>
+    <div class="card">
+        <table>
+            <tr>
+                <th>Stack</th>
+                <th>Queue</th>
+                <th>Match</th>
+            </tr>
+            {% for p in result.pairs %}
+            <tr>
+                <td>{{ p.stack_char }}</td>
+                <td>{{ p.queue_char }}</td>
+                <td class="{% if p.match %}ok{% else %}no{% endif %}">{% if p.match %}✓{% else %}✗{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="{% url 'home' %}">← Back</a>
+</body>
+
+</html>
