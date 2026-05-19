@@ -37,5 +37,3 @@ python manage.py runserver
 ```
 Then open: http://127.0.0.1:8000
 
-## 👩‍💻 Developer
-Mariam — Data Structures Project
