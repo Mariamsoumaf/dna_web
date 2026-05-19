@@ -1,3 +1,4 @@
+#SEN204-INTERNET AND WEB PROGRAMMIN
 # 🧬 DNA Sequence Analyzer
 
 A full-stack web application that analyzes DNA sequences using **Stack** and **Queue** data structures, built with Django framework.
